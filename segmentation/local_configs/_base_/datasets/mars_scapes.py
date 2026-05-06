@@ -58,6 +58,3 @@ data = dict(
         img_dir='img/test',
         ann_dir='label_id/test',
         pipeline=test_pipeline))
-
-# 0.x 的评估配置
-evaluation = dict(interval=4000, metric='mIoU', pre_eval=True,save_best='mIoU')

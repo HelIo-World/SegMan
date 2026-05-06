@@ -63,6 +63,3 @@ data = dict(
         img_suffix='.png',
         seg_map_suffix='_labelTrainIds.png',
         pipeline=test_pipeline))
-
-# 0.x 评价指标配置
-evaluation = dict(interval=4000, metric='mIoU', pre_eval=True,save_best='mIoU')
