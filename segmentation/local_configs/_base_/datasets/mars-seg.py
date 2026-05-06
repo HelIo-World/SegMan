@@ -5,13 +5,13 @@ data_root = 'data/mars_seg'
 # 0.x 必须显式定义归一化参数，通常模型默认使用这些均值和方差
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
-crop_size = (500, 560)
+crop_size = (512, 576)
 
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations'),
     # 1.x 的 RandomResize 对应 0.x Resize + img_scale + ratio_range
-    dict(type='Resize', img_scale=(1120, 1000), ratio_range=(0.5, 2.0)),
+    dict(type='Resize', img_scale=(1152, 1024), ratio_range=(0.5, 2.0)),
     dict(type='RandomCrop', crop_size=crop_size, cat_max_ratio=0.75),
     dict(type='RandomFlip', prob=0.5),
     dict(type='PhotoMetricDistortion'),
@@ -25,7 +25,7 @@ test_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(
         type='MultiScaleFlipAug',
-        img_scale=(560, 500), # 建议设置为训练时的原图大小或 1.x 里的 scale
+        img_scale=crop_size, # 建议设置为训练时的原图大小或 1.x 里的 scale
         flip=False,
         transforms=[
             dict(type='Resize', keep_ratio=True),
